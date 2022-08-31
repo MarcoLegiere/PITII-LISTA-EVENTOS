@@ -1,10 +1,6 @@
 from django.contrib import admin
 from polls.models import Owner, Meeting, User
 
-#admin.site.register(Owner)
-#admin.site.register(Meeting)
-#admin.site.register(User)
-
 class OwnerAdmin(admin.ModelAdmin):
     list_display = ('name', 'email')
 
@@ -17,4 +13,5 @@ class Meeting(admin.ModelAdmin):
 @admin.register(User)
 class User(admin.ModelAdmin):
     list_display = ('meeting', 'name', 'matricula', 'setor', 'cargo', 'email')
+    
 
