@@ -38,6 +38,9 @@ class Owner(models.Model):
     password = models.CharField(max_length=50, verbose_name='Senha')
     email = models.CharField(max_length=120, verbose_name='E-mail')
 
+    class Meta:
+        ordering = ['name', 'email']
+
     def __int__(self, name, password, email):
         self.name = name
         self.password = password
