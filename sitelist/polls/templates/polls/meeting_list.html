@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Lista de eventos</h1>
+  {% if meeting_list %}
+  <ul>
+    {% for meeting in meeting_list %}
+      <li>
+        <a href="{{ meeting.get_absolute_url }}">{{ meeting.name_meeting }}</a> ({{ meeting.author }}) ({{ meeting.date_meeting }})
+      </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>There are no books in the library.</p>
+  {% endif %}
+{% endblock %}
