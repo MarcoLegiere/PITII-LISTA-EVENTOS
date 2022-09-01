@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from .models import Owner, Meeting, User
 
 def index(request):
@@ -8,15 +7,15 @@ def index(request):
     # Generate counts of some of the main objects
     num_meetings = Meeting.objects.all().count()
 
-    # Available books (status = 'a')
-    num_instances_available = Meeting.objects.filter(status__exact='o').count()
+    # Available books
+    num_users = User.objects.count()
 
     # The 'all()' is implied by default.
     num_authors = Owner.objects.count()
 
     context = {
-        'num_meeting': num_meetings,
-        'num_instances_available': num_instances_available,
+        'num_meetings': num_meetings,
+        'num_users': num_users,
         'num_authors': num_authors,
     }
 

@@ -4,24 +4,39 @@ from django.db import models
 
 class Meeting(models.Model):
 
+    objects = None
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID UNICO')
     name_meeting = models.CharField(max_length=120, verbose_name='Nome da reunião')
     author = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name='Autor', blank=False)
     date_meeting = models.DateField(verbose_name='Data da reunião')
 
 
-    MEETING_STATUS = (
+    MEETING_LOCAL = (
         ('p', 'Presencial'),
         ('o', 'Online')
+    )
+
+    local = models.CharField(
+        max_length=1,
+        choices=MEETING_LOCAL,
+        blank=False,
+        default='p',
+        help_text='Local Reunião',
+    )
+
+    MEETING_STATUS = (
+        ('p', 'Público'),
+        ('f', 'Fechado')
     )
 
     status = models.CharField(
         max_length=1,
         choices=MEETING_STATUS,
         blank=False,
-        default='p',
-        help_text='Local Reunião',
+        default='f',
+        help_text='Status da reunião',
     )
+
 
     def __int__(self, name_meeting, author, date_meeting):
 
