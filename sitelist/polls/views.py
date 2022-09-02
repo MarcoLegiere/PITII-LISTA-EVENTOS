@@ -14,10 +14,14 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Owner.objects.count()
 
+    #num_visits = request.session.get('num_visits', 0)
+    #request.session['num_visits'] = num_visits + 1
+
     context = {
         'num_meetings': num_meetings,
         'num_users': num_users,
         'num_authors': num_authors,
+        #'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable

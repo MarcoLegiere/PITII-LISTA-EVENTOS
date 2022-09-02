@@ -1,4 +1,6 @@
 import uuid
+from django.contrib.auth.models import User
+from datetime import date
 
 from django.db import models
 
@@ -9,6 +11,7 @@ class Meeting(models.Model):
     author = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name='Autor', blank=False)
     date_meeting = models.DateField(verbose_name='Data da reunião')
     link = models.CharField(max_length=400, blank=True, verbose_name='Link da reunião')
+    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
 
     MEETING_LOCAL = (
@@ -47,6 +50,10 @@ class Meeting(models.Model):
 
     def __str__(self):
         return f'HRJ - {self.name_meeting}'
+
+    def is_overdue(self):
+        """Determines if the book is overdue based on due date and current date."""
+        return bool(self.due_back and date.today() > self.due_back)
 
 class Owner(models.Model):
 
