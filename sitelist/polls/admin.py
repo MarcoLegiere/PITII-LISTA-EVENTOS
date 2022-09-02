@@ -8,7 +8,7 @@ admin.site.register(Owner, OwnerAdmin)
 
 @admin.register(Meeting)
 class Meeting(admin.ModelAdmin):
-    list_display = ('name_meeting', 'author', 'date_meeting')
+    list_display = ('name_meeting', 'author', 'date_meeting', 'link')
 
 @admin.register(User)
 class User(admin.ModelAdmin):

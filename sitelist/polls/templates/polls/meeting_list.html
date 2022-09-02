@@ -5,12 +5,14 @@
   {% if meeting_list %}
   <ul>
     {% for meeting in meeting_list %}
-      <li>
-        <a href="{{ meeting.get_absolute_url }}">{{ meeting.name_meeting }}</a> ({{ meeting.author }}) ({{ meeting.date_meeting }})
-      </li>
+      {% if meeting.status == 'p' %}
+        <li>
+          <a href="{{ meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }}
+        </li>
+      {% endif %}
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no books in the library.</p>
+    <p>Nenhum evento encontrado.</p>
   {% endif %}
 {% endblock %}

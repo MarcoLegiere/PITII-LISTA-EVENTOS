@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Owner, Meeting, User
+from django.views import generic
 
 def index(request):
     """View function for home page of site."""
@@ -21,9 +22,6 @@ def index(request):
 
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
-
-from django.views import generic
-
 
 class MeetingListView(generic.ListView):
     model = Meeting

@@ -4,11 +4,11 @@ from django.db import models
 
 class Meeting(models.Model):
 
-    objects = None
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID UNICO')
     name_meeting = models.CharField(max_length=120, verbose_name='Nome da reunião')
     author = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name='Autor', blank=False)
     date_meeting = models.DateField(verbose_name='Data da reunião')
+    link = models.CharField(max_length=400, blank=True, verbose_name='Link da reunião')
 
 
     MEETING_LOCAL = (
@@ -38,11 +38,12 @@ class Meeting(models.Model):
     )
 
 
-    def __int__(self, name_meeting, author, date_meeting):
+    def __int__(self, name_meeting, author, date_meeting, link):
 
         self.name = name_meeting
         self.author = author
         self.date_meeting = date_meeting
+        self.link = link
 
     def __str__(self):
         return f'HRJ - {self.name_meeting}'
