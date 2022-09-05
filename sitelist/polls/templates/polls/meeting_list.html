@@ -5,7 +5,7 @@
   {% if meeting_list %}
   <ul>
     {% for meeting in meeting_list %}
-      {% if meeting.status == 'p' %}
+      {% if meeting.public == 'p' %}
         <li>
           <a href="{{ meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }}
         </li>

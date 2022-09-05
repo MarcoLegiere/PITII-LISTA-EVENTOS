@@ -31,11 +31,14 @@ def index(request):
 
 class MeetingListView(generic.ListView):
     model = Meeting
+    template_name ='polls/meeting_list.html'
+
+    def get_queryset(self):
+        return Meeting.objects.filter().filter(status__exact='p').order_by('public')
 
 
 class MeetingDetailView(generic.DetailView):
     model = Meeting
-
 
 class LoanedMeetingsByUserListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view listing books on loan to current user."""
