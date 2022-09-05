@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.views.generic import RedirectView
 from django.urls import include
 from django.urls import path
-
+from polls import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -18,7 +18,7 @@ urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]
 
-
 urlpatterns += [
-    path('mymeetings/', views.LoanedBooksByUserListView.as_view(), name='my-meetings'),
+    path('mymeetings/', views.LoanedMeetingsByUserListView.as_view(), name='my-meetings'),
 ]
+

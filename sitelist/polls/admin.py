@@ -9,6 +9,7 @@ admin.site.register(Owner, OwnerAdmin)
 @admin.register(Meeting)
 class Meeting(admin.ModelAdmin):
     list_display = ('name_meeting', 'author', 'date_meeting')
+
 class MeetingInstanceAdmin(admin.ModelAdmin):
     list_display = ('name_meeting', 'author', 'borrower', 'date_meeting', 'id')
     list_filter = ('status', 'due_back')

@@ -8,11 +8,10 @@ class Meeting(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID UNICO')
     name_meeting = models.CharField(max_length=120, verbose_name='Nome da reunião')
-    author = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name='Autor', blank=False)
+    author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=False, verbose_name='Autor')
     date_meeting = models.DateField(verbose_name='Data da reunião')
     link = models.CharField(max_length=400, blank=True, verbose_name='Link da reunião')
-    borrower = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
-
+    #borrower = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name='Autor', blank=False)
 
     MEETING_LOCAL = (
         ('p', 'Presencial'),

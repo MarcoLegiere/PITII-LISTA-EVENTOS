@@ -2,6 +2,7 @@ from django.shortcuts import render
 from . import admin
 from .models import Owner, Meeting, User
 from django.views import generic
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 def index(request):
     """View function for home page of site."""
@@ -35,15 +36,19 @@ class MeetingListView(generic.ListView):
 class MeetingDetailView(generic.DetailView):
     model = Meeting
 
-from django.contrib.auth.mixins import LoginRequiredMixin
 
-class LoanedBooksByUserListView(LoginRequiredMixin,generic.ListView):
+class LoanedMeetingsByUserListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view listing books on loan to current user."""
     model = Meeting
-    template_name ='catalog/meeting_list_borrowed_user.html'
+    template_name ='polls/meeting_list_borrowed_user.html'
     paginate_by = 10
 
     def get_queryset(self):
-        return Meeting.objects.filter(borrower=self.request.user).filter(status__exact='p' or 'f').order_by('due_back')
+        status=['p','f']
+        return Meeting.objects.filter(author=self.request.user).filter(status__in=status).order_by('name_meeting')
+
+
+
+
 
 

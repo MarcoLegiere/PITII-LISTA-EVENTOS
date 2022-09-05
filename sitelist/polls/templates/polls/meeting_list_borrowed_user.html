@@ -1,19 +1,18 @@
-{% extends "base_generic.html" %}
+{% extends "base.html" %}
 
 {% block content %}
-    <h1>Borrowed books</h1>
-
-    {% if bookinstance_list %}
-    <ul>
-
-      {% for bookinst in bookinstance_list %}
-      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
-      </li>
-      {% endfor %}
-    </ul>
-
-    {% else %}
-      <p>There are no books borrowed.</p>
-    {% endif %}
+  <h1>Lista de eventos</h1>
+  {% if meeting_list %}
+  <ul>
+    {% for meeting in meeting_list %}
+      {% if meeting.status == 'p' or 'f' %}
+        <li>
+          <a href="{{ polls.meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }}
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+  {% else %}
+    <p>Nenhum evento encontrado.</p>
+  {% endif %}
 {% endblock %}
