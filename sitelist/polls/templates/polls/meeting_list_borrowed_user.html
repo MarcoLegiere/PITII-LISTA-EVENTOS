@@ -5,11 +5,13 @@
   {% if meeting_list %}
   <ul>
     {% for meeting in meeting_list %}
+
       {% if meeting.status == 'p' or 'f' %}
         <li>
-          <a href="{{ polls.meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }}
+          <a href="{{ meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }} - {{ v }}
+
         </li>
-      {% endif %}
+        {% endif %}
     {% endfor %}
   </ul>
   {% else %}

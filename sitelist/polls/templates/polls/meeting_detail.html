@@ -10,15 +10,20 @@
 
 
   <div style="margin-left:20px;margin-top:20px">
-    <h4>QRCODE</h4>
+    <h4>TESTE!</h4>
 
-      <p><strong>Status:</strong> {{ meeting.status }}</p>
-      <li>
-          <a href="#"> </a>
-      </li>
 
-    {% for list_meeting in meeting_set.all %}
+      <h2><strong>Local:</strong> </h2>
 
-    {% endfor %}
+        {% if meeting.local == 'o' %}
+            <p><strong>Online</strong> </p>
+            <a href="{{ meeting.link }}"> {{ meeting.name_meeting }}</a>
+        {% else %}
+            <p><strong>Presencial</strong> </p>
+            <a>Reunião precencial!</a>
+        {% endif %}
+
+
+    #{% for list_meeting in meeting_set.all %} {% endfor %}
   </div>
 {% endblock %}

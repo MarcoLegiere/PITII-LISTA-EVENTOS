@@ -23,7 +23,6 @@ def index(request):
         'num_meetings': num_meetings,
         'num_users': num_users,
         'num_authors': num_authors,
-        #'num_visits': num_visits,
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -50,8 +49,7 @@ class LoanedMeetingsByUserListView(LoginRequiredMixin, generic.ListView):
         status=['p','f']
         return Meeting.objects.filter(author=self.request.user).filter(status__in=status).order_by('name_meeting')
 
-
-
-
-
-
+class LoanedMeetingsByUserDetailView(LoginRequiredMixin, generic.DetailView):
+    """Generic class-based view listing books on loan to current user."""
+    model = Meeting
+    template_name ='polls/meeting_detail_borrowed_user.html'

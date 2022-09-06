@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ meeting.name_meeting }}</h1>
+
+  <p><strong>Nome:</strong> <a href="">{{ meeting.name_meeting }}</a></p>
+
+  <p><strong>Data:</strong> {{ meeting.date_meeting }}</p>
+  <p><strong>Autor:</strong> {{ meeting.author }}</p>
+
+
+  <div style="margin-left:20px;margin-top:20px">
+    <h4>QRCODE</h4>
+      <p><strong>Status:</strong>{{ meeting.local }}</p>
+      <li>
+          <a href="#"> </a>
+        <p>DETAIL USER</p>
+      </li>
+
+    <a href="{{ link }}">link</a>
+
+    {% for list_meeting in meeting_set.all %}
+    {% endfor %}
+  </div>
+{% endblock %}

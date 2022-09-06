@@ -13,14 +13,14 @@ class Meeting(models.Model):
     link = models.CharField(max_length=400, blank=True, verbose_name='Link da reunião')
     #borrower = models.ForeignKey('Owner', on_delete=models.CASCADE, verbose_name='Autor', blank=False)
 
-    MEETING_PUBLICAR = (
+    MEETING_PUBLIC = (
         ('p', 'Publicado'),
         ('a', 'Arquivado')
     )
 
     public = models.CharField(
         max_length=1,
-        choices=MEETING_PUBLICAR,
+        choices=MEETING_PUBLIC,
         blank=False,
         default='p',
         help_text='Publicar ou Arquivar',
