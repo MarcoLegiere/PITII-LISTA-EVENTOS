@@ -10,10 +10,9 @@
 
 
   <div style="margin-left:20px;margin-top:20px">
-    <h4>TESTE!</h4>
 
 
-      <h2><strong>Local:</strong> </h2>
+      <h4><strong>Local:</strong> </h4>
 
         {% if meeting.local == 'o' %}
             <p><strong>Online</strong> </p>
@@ -24,6 +23,6 @@
         {% endif %}
 
 
-    #{% for list_meeting in meeting_set.all %} {% endfor %}
+    {% for list_meeting in meeting_set.all %} {% endfor %}
   </div>
 {% endblock %}

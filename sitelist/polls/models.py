@@ -61,7 +61,7 @@ class Meeting(models.Model):
         self.link = link
 
     def __str__(self):
-        return f'HRJ - {self.name_meeting}'
+        return  self.name_meeting
 
     def is_overdue(self):
         """Determines if the book is overdue based on due date and current date."""

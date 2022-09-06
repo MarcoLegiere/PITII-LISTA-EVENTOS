@@ -21,6 +21,11 @@ urlpatterns += [
 urlpatterns += [
     path('mymeetings/', views.LoanedMeetingsByUserListView.as_view(), name='my-meetings'),
     path('mymeetings/<str:pk>', views.LoanedMeetingsByUserDetailView.as_view(), name='my-meetingsDetail'),
+]
 
+urlpatterns += [
+    path('meeting/create/', views.MeetingCreate.as_view(), name='meeting-create'),
+    path('meeting/<str:pk>/update/', views.MeetingUpdate.as_view(), name='meeting-update'),
+    path('meeting/<str:pk>/delete/', views.MeetingDelete.as_view(), name='meeting-delete'),
 ]
 

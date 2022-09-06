@@ -9,7 +9,7 @@
     {% for k,v in meeting.MEETING_PUBLIC %}
       {% if meeting.status == 'p' and k == 'p' %}
         <li>
-          <a href="{{ meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }} - {{ meeting.author }} - {{ v }}
+          <a href="{{ meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }} - {{ v }}
         </li>
       {% endif %}
     {% endfor %}

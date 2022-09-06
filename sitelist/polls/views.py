@@ -53,3 +53,24 @@ class LoanedMeetingsByUserDetailView(LoginRequiredMixin, generic.DetailView):
     """Generic class-based view listing books on loan to current user."""
     model = Meeting
     template_name ='polls/meeting_detail_borrowed_user.html'
+
+
+
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from polls.models import Meeting
+
+class MeetingCreate(CreateView):
+    model = Meeting
+    fields = ['name_meeting', 'author', 'date_meeting', 'link', 'local', 'public', 'status']
+    initial = {'status': 'f'}
+
+class MeetingUpdate(UpdateView):
+    model = Meeting
+    fields = '__all__' # Not recommended (potential security issue if more fields added)
+
+class MeetingDelete(DeleteView):
+    model = Meeting
+    success_url = reverse_lazy('meeting')
