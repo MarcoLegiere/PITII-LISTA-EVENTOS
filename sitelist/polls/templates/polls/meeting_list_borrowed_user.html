@@ -9,7 +9,6 @@
       {% if meeting.status == 'p' or 'f' %}
         <li>
           <a href="{{ meeting.id }}"> {{ meeting }}</a> - {{ meeting.date_meeting }} - {{ meeting.author }} - {{ v }}
-
         </li>
         {% endif %}
     {% endfor %}
@@ -17,4 +16,7 @@
   {% else %}
     <p>Nenhum evento encontrado.</p>
   {% endif %}
+
+<a href="{% url 'mymeeting_create' %}">Criar</a>
+
 {% endblock %}

@@ -87,9 +87,9 @@ class Owner(models.Model):
 
 
 class User(models.Model):
-
+    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID UNICO')
     name = models.CharField(max_length=80)
-    matricula = models.CharField(max_length=10)
+    mat = models.CharField(max_length=10)
     email = models.CharField(max_length=120)
     setor = models.CharField(max_length=50)
     cargo = models.CharField(max_length=50)
@@ -99,7 +99,7 @@ class User(models.Model):
     def __int__(self, name, name_meeting, matricula, email, setor, cargo):
         self.name = name
         self.name_meeting = name_meeting
-        self.matricula = matricula
+        self.mat = mat
         self.email = email
         self.setor = setor
         self.cargo = cargo

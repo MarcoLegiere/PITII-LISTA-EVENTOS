@@ -2,13 +2,13 @@
 
 {% block content %}
 
-<h1>Delete Meeting</h1>
+<h1>Deletar Reunião</h1>
 
-<p>Are you sure you want to delete the author: {{ meeting }}?</p>
+<p>Deseja realmente deletar a reunião: {{ meeting }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}
-  <input type="submit" value="Yes, delete.">
+  <input type="submit" value="Sim, deletar">
 </form>
 
 {% endblock %}

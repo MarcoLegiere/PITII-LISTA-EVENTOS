@@ -43,7 +43,7 @@ class LoanedMeetingsByUserListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view listing books on loan to current user."""
     model = Meeting
     template_name ='polls/meeting_list_borrowed_user.html'
-    paginate_by = 10
+    #paginate_by = 50
 
     def get_queryset(self):
         status=['p','f']
@@ -55,8 +55,6 @@ class LoanedMeetingsByUserDetailView(LoginRequiredMixin, generic.DetailView):
     template_name ='polls/meeting_detail_borrowed_user.html'
 
 
-
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -66,11 +64,12 @@ class MeetingCreate(CreateView):
     model = Meeting
     fields = ['name_meeting', 'author', 'date_meeting', 'link', 'local', 'public', 'status']
     initial = {'status': 'f'}
+    success_url = reverse_lazy('meeting')
 
 class MeetingUpdate(UpdateView):
     model = Meeting
     fields = '__all__' # Not recommended (potential security issue if more fields added)
-
+    success_url = reverse_lazy('meeting')
 class MeetingDelete(DeleteView):
     model = Meeting
     success_url = reverse_lazy('meeting')
