@@ -64,7 +64,6 @@ class Meeting(models.Model):
         return  self.name_meeting
 
     def is_overdue(self):
-        """Determines if the book is overdue based on due date and current date."""
         return bool(self.due_back and date.today() > self.due_back)
 
 class Owner(models.Model):
@@ -85,11 +84,10 @@ class Owner(models.Model):
         return self.name
 
 
-
 class User(models.Model):
-    #id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='ID UNICO')
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=80)
-    mat = models.CharField(max_length=10)
+    matricula = models.CharField(max_length=10)
     email = models.CharField(max_length=120)
     setor = models.CharField(max_length=50)
     cargo = models.CharField(max_length=50)
@@ -97,9 +95,10 @@ class User(models.Model):
     meeting = models.ForeignKey('Meeting', on_delete=models.CASCADE, verbose_name='Nome da Reunião')
 
     def __int__(self, name, name_meeting, matricula, email, setor, cargo):
+
         self.name = name
         self.name_meeting = name_meeting
-        self.mat = mat
+        self.matricula = matricula
         self.email = email
         self.setor = setor
         self.cargo = cargo

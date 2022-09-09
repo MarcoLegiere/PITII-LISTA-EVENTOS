@@ -29,3 +29,7 @@ urlpatterns += [
     path('mymeetings/<str:pk>/delete/', views.MeetingDelete.as_view(), name='mymeetings_delete'),
 ]
 
+urlpatterns +=[
+    path('meeting/<str:pk>/user/', views.UserCreate.as_view(), name='user'),
+]
+

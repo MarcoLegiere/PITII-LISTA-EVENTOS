@@ -1,7 +1,15 @@
-venv\Scripts\activate # ambiente virual
+e # ambiente virual
 
 python -m pip install --upgrade pip # atualizar o pip
 
 pip install -r requirements.txt  # Install os requisitos
 
 python -m pip install --upgrade pip # rodar a aplicação
+
+
+
+BANCO DE DADOS
+
+python manage.py migrate
+
+python manage.py makemigrations

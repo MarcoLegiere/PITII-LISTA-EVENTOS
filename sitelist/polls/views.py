@@ -64,12 +64,18 @@ class MeetingCreate(CreateView):
     model = Meeting
     fields = ['name_meeting', 'author', 'date_meeting', 'link', 'local', 'public', 'status']
     initial = {'status': 'f'}
-    success_url = reverse_lazy('meeting')
+    success_url = reverse_lazy('my-meetings')
 
 class MeetingUpdate(UpdateView):
     model = Meeting
     fields = '__all__' # Not recommended (potential security issue if more fields added)
-    success_url = reverse_lazy('meeting')
+    success_url = reverse_lazy('my-meetings')
 class MeetingDelete(DeleteView):
     model = Meeting
+    success_url = reverse_lazy('my-meetings')
+
+class UserCreate(CreateView):
+    model = User
+    fields = ['meeting','name', 'matricula', 'email', 'setor', 'cargo']
     success_url = reverse_lazy('meeting')
+
