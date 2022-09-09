@@ -30,6 +30,6 @@ urlpatterns += [
 ]
 
 urlpatterns +=[
-    path('meeting/<str:pk>/user/', views.UserCreate.as_view(), name='user'),
+    path('user/<str:pk>/', views.UserCreate.as_view(), name='user'),
 ]
 

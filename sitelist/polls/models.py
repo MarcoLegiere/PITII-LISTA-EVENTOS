@@ -70,7 +70,7 @@ class Owner(models.Model):
 
     name = models.CharField(max_length=80, verbose_name='Nome')
     password = models.CharField(max_length=50, verbose_name='Senha')
-    email = models.CharField(max_length=120, verbose_name='E-mail')
+    email = models.EmailField(max_length=120, verbose_name='E-mail')
 
     class Meta:
         ordering = ['name', 'email']
@@ -85,10 +85,10 @@ class Owner(models.Model):
 
 
 class User(models.Model):
-    id = models.AutoField(primary_key=True)
+    id_user = models.UUIDField(primary_key=False, default=uuid.uuid4)
     name = models.CharField(max_length=80)
     matricula = models.CharField(max_length=10)
-    email = models.CharField(max_length=120)
+    email = models.EmailField(max_length=120)
     setor = models.CharField(max_length=50)
     cargo = models.CharField(max_length=50)
 
