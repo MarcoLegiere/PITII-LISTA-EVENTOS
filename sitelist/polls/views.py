@@ -76,6 +76,7 @@ class MeetingDelete(DeleteView):
 
 class UserCreate(CreateView):
     model = User
-    fields = ['meeting','name', 'matricula', 'email', 'setor', 'cargo']
+    fields = ['meeting', 'name', 'matricula', 'email', 'setor', 'cargo']
     success_url = reverse_lazy('meeting')
+
 

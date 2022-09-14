@@ -1,4 +1,4 @@
-e # ambiente virual
+venv\Scripts\activate
 
 python -m pip install --upgrade pip # atualizar o pip
 
