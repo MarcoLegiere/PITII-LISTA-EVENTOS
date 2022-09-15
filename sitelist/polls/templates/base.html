@@ -43,6 +43,9 @@
                         <li class="nav-item active">
                             <a type="button"class="nav-link">Usuário: {{ user.get_username }}</a>
                         </li>
+                        <li class="nav nav-pills">
+                            <a type="button"class="nav-link active" href="{% url 'mymeeting_create' %}">Criar Reunião</a>
+                        </li>
 
                        {% else %}
                             <a type="button" class="btn btn-success" href="{% url 'login'%}?next={{request.path}}">Login<span class="sr-only">(current)</span></a>
@@ -54,7 +57,8 @@
             </div>
         </div>
     </nav>
-    <div class="col-sm-10 ">{% block content %}{% endblock %}</div>
+
+    <section class="jumbotron text-center">{% block content %}{% endblock %}</section>
 </body>
 
 </html>

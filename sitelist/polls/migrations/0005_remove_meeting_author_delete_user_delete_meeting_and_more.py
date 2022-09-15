@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='author',
         ),
         migrations.DeleteModel(
-            name='User',
+            name='Employee',
         ),
         migrations.DeleteModel(
             name='Meeting',

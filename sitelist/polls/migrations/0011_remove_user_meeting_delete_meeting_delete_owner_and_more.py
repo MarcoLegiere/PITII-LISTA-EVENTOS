@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
             name='Owner',
         ),
         migrations.DeleteModel(
-            name='User',
+            name='Employee',
         ),
     ]

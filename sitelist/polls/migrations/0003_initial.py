@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='User',
+            name='Employee',
             fields=[
                 ('id', models.IntegerField(primary_key=True, serialize=False)),
                 ('name_meeting', models.CharField(max_length=120)),

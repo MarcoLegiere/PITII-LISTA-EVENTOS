@@ -16,9 +16,6 @@ def index(request):
     # The 'all()' is implied by default.
     num_authors = Owner.objects.count()
 
-    #num_visits = request.session.get('num_visits', 0)
-    #request.session['num_visits'] = num_visits + 1
-
     context = {
         'num_meetings': num_meetings,
         'num_users': num_users,
@@ -40,14 +37,12 @@ class MeetingDetailView(generic.DetailView):
     model = Meeting
 
 class LoanedMeetingsByUserListView(LoginRequiredMixin, generic.ListView):
-    """Generic class-based view listing books on loan to current user."""
     model = Meeting
     template_name ='polls/meeting_list_borrowed_user.html'
-    #paginate_by = 50
 
     def get_queryset(self):
         status=['p','f']
-        return Meeting.objects.filter(author=self.request.user).filter(status__in=status).order_by('name_meeting')
+        return Meeting.objects.filter(author=self.request.user).filter(status__in=status).order_by('date_meeting')
 
 class LoanedMeetingsByUserDetailView(LoginRequiredMixin, generic.DetailView):
     """Generic class-based view listing books on loan to current user."""
