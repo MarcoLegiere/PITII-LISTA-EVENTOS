@@ -7,6 +7,7 @@ urlpatterns = [
 ]
 urlpatterns = [
     path('', views.index, name='index'),
+    path('meeting/', views.MeetingListView.as_view(), name='meeting'),
     path('meeting/<str:pk>', views.MeetingDetailView.as_view(), name='meetingDetail'),
     path('mymeetings/<str:pk>', views.MeetingDetailView.as_view(), name='my-meetingsDetail'),
 ]

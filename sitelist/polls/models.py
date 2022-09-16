@@ -85,7 +85,6 @@ class Owner(models.Model):
 
 
 class User(models.Model):
-    id_user = models.UUIDField(primary_key=False, default=uuid.uuid4)
     name = models.CharField(max_length=80)
     matricula = models.CharField(max_length=10)
     email = models.EmailField(max_length=120)
