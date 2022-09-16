@@ -1,14 +1,25 @@
+
 {% extends "base.html" %}
 
 {% block content %}
 
-  <h1>Lista de eventos</h1>
-  <p>Bem-vindo a lista de eventos. <em>Marco Legiere</em>!</p>
-  <h2>Dynamic content</h2>
-  <p>Contagem de eventos:</p>
-  <ul>
-    <li><strong>Reuniões:</strong> {{ num_meetings }}</li><br>
-    <li><strong>Usuários:</strong> {{ num_users }}</li><br>
-    <li><strong>Autores:</strong> {{ num_authors }}</li>
-  </ul>
+<section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
+          <h1>Área exclusiva para reuniões da organização.</h1>
+          <h3>Aqui você irá encontrar as reunições programadas da unidade.</h3>
+          <div class="d-flex justify-content-center justify-content-lg-start">
+
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="400">
+          <img src="../static/assets/img/hero-img.png" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section>
+
 {% endblock %}
