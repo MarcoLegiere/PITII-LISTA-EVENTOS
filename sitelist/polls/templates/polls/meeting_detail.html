@@ -1,28 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{ meeting.name_meeting }}</h1>
-
-  <p><strong>Nome:</strong> <a href="">{{ meeting.name_meeting }}</a></p>
-    <!-- author detail link not yet defined -->
-  <p><strong>Data:</strong> {{ meeting.date_meeting }}</p>
-  <p><strong>Autor:</strong> {{ meeting.author }}</p>
-
-
-  <div style="margin-left:20px;margin-top:20px">
-
-
-      <h4><strong>Local:</strong> </h4>
-
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">{{ meeting }}</h5>
+    </div>
+    <div class="card-body col-md-4 rounded mx-auto d-block">
+        <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
         {% if meeting.local == 'o' %}
-            <p><strong>Online</strong> </p>
-            <a href="{{ meeting.link }}"> {{ meeting.name_meeting }}</a>
+        <hr>
+        <a class="card-text" href="{{ meeting.link }}">Link reunião</a>
         {% else %}
-            <p><strong>Presencial</strong> </p>
-            <a>Reunião precencial!</a>
+        <p><strong>Local:</strong> Reunião presencial</strong></p>
         {% endif %}
+        <p><strong>Data:</strong> {{ meeting.date_meeting }}</p>
 
-
-    {% for list_meeting in meeting_set.all %} {% endfor %}
-  </div>
+    </div>
+</div>
+<div class="card-footer text-muted">
+    <p class="text-muted">Autor - {{ meeting.author }}</p>
+</div>
+</div>
 {% endblock %}

@@ -1,25 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>{{ meeting.name_meeting }}</h1>
 
-  <p><strong>Nome:</strong> {{ meeting.name_meeting }}</p>
+<div class="card text-center">
+    <div class="card-header">
+        <h5 class="card-title">{{ meeting }}</h5>
+    </div>
+    <div class="card-body col-md-4 rounded mx-auto d-block">
+        <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
+        {% if meeting.local == 'o' %}
+        <a class="card-text" href="{{ meeting.link }}">Link reunião</a>
+        {% else %}
+        <p>Reunião presencial</p>
+        {% endif %}
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <a href="{% url 'mymeeting_update' meeting.id%}" type="button"
+                   class="btn btn-sm btn-outline-primary">Editar</a>
+                <a href="{% url 'mymeeting_delete' meeting.id%}" type="button"
+                   class="btn btn-sm btn-outline-danger">Excluir</a>
+            </div>
 
-  <p><strong>Data:</strong> {{ meeting.date_meeting }}</p>
-  <p><strong>Autor:</strong> {{ meeting.author }}</p>
+                <div class="btn-group">
+                    <a href="{% url 'user' meeting.id%}" type="button"
+                       class="btn btn-sm btn-outline-info">Formulário</a>
+                </div>
 
-
-  <div style="margin-left:20px;margin-top:20px;display=flex">
-    <h4>QRCODE</h4>
-      <p><strong>Status:</strong>{{ meeting.local }}</p>
-      <li>
-          <a href="#"> </a>
-        <p>DETAIL USER</p>
-        <a href="{% url 'mymeeting_update' meeting.id%}">EDITAR</a><br>
-        <a href="{% url 'mymeeting_delete' meeting.id%}">EXCLUIR</a>
-      </li>
-
-    <a href="{% url 'user' meeting.id%}">link</a>
-
-  </div>
+        </div>
+    </div>
+    <div class="card-footer text-muted">
+        <p class="text-muted">{{ meeting.author }} - {{ meeting.date_meeting }}</p>
+    </div>
+</div>
 {% endblock %}
