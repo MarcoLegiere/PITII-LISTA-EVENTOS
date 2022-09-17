@@ -13,7 +13,6 @@ urlpatterns += [
     path('', RedirectView.as_view(url='polls/', permanent=True)),
 ]
 
-
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
 ]

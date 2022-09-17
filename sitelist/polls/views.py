@@ -25,6 +25,7 @@ def index(request):
     # Render the HTML template index.html with the data in the context variable
     return render(request, 'index.html', context=context)
 
+
 class MeetingListView(generic.ListView):
     model = Meeting
     template_name ='polls/meeting_list.html'
@@ -65,6 +66,7 @@ class MeetingUpdate(UpdateView):
     model = Meeting
     fields = '__all__' # Not recommended (potential security issue if more fields added)
     success_url = reverse_lazy('my-meetings')
+
 class MeetingDelete(DeleteView):
     model = Meeting
     success_url = reverse_lazy('my-meetings')

@@ -103,4 +103,4 @@ class User(models.Model):
         self.cargo = cargo
 
     def __str__(self):
-        return self.name
+        return self.name_meeting
