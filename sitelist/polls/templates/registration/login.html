@@ -1,31 +1,29 @@
 {% extends "base.html" %}
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
-
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
-
-
 {% block content %}
-  <form method="post" action="{% url 'login' %}" class="text-center">
+{% if form.errors %}
+
+<p>Seu nome de usuário ou senha não correspondem. Por favor, tente novamente.</p>
+{% endif %}
+
+{% if next %}
+{% if user.is_authenticated %}
+<p>Sua conta não tem acesso a esta página. Para prosseguir,
+    por favor faça o login com uma conta que tenha acesso.</p>
+{% else %}
+<p>Por favor, faça o login para acessar a area administrativa.</p>
+{% endif %}
+{% endif %}
+
+
+<form method="post" action="{% url 'login' %}" class="text-center">
 
     {% csrf_token %}
-        <label class="form-label ">Usuário: {{ form.username }}</label>
+    <label class="form-label ">Usuário: {{ form.username }}</label>
 
-        <label class="form-label col-lg">Senha: {{ form.password }}</label>
+    <label class="form-label col-lg">Senha: {{ form.password }}</label>
 
 
     <button class="btn btn-primary" type="submit">Entrar</button>
-  </form>
-
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p><a href="{% url 'password_reset' %}">Perdeu a senha?</a></p>
+</form>
 
 {% endblock %}

@@ -1,8 +1,16 @@
+from importlib.resources import Resource
+
 from django.shortcuts import render
 from . import admin
-from .models import Owner, Meeting, User
+from .models import Owner, Meeting, Funcionario
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+
+from polls.models import Meeting
+
 
 def index(request):
     """View function for home page of site."""
@@ -11,15 +19,11 @@ def index(request):
     num_meetings = Meeting.objects.all().count()
 
     # Available books
-    num_users = User.objects.count()
-
-    # The 'all()' is implied by default.
-    num_authors = Owner.objects.count()
+    num_users = Funcionario.objects.count()
 
     context = {
         'num_meetings': num_meetings,
         'num_users': num_users,
-        'num_authors': num_authors,
     }
 
     # Render the HTML template index.html with the data in the context variable
@@ -28,7 +32,7 @@ def index(request):
 
 class MeetingListView(generic.ListView):
     model = Meeting
-    template_name ='polls/meeting_list.html'
+    template_name = 'polls/meeting_list.html'
 
     def get_queryset(self):
         return Meeting.objects.filter().filter(status__exact='p').order_by('public')
@@ -37,43 +41,57 @@ class MeetingListView(generic.ListView):
 class MeetingDetailView(generic.DetailView):
     model = Meeting
 
+
 class LoanedMeetingsByUserListView(LoginRequiredMixin, generic.ListView):
     model = Meeting
-    template_name ='polls/meeting_list_borrowed_user.html'
+    template_name = 'polls/meeting_list_borrowed_user.html'
 
     def get_queryset(self):
-        status=['p','f']
+        status = ['p', 'f']
         return Meeting.objects.filter(author=self.request.user).filter(status__in=status).order_by('date_meeting')
+
 
 class LoanedMeetingsByUserDetailView(LoginRequiredMixin, generic.DetailView):
     """Generic class-based view listing books on loan to current user."""
     model = Meeting
-    template_name ='polls/meeting_detail_borrowed_user.html'
+    template_name = 'polls/meeting_detail_borrowed_user.html'
 
-
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy
-
-from polls.models import Meeting
 
 class MeetingCreate(CreateView):
     model = Meeting
-    fields = ['name_meeting', 'author', 'date_meeting', 'link', 'local', 'public', 'status']
+    fields = ['name_meeting', 'date_meeting', 'link', 'local', 'public', 'status']
     initial = {'status': 'f'}
     success_url = reverse_lazy('my-meetings')
 
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        url = super().form_valid(form)
+        return url
+
+
 class MeetingUpdate(UpdateView):
     model = Meeting
-    fields = '__all__' # Not recommended (potential security issue if more fields added)
+    fields = ['name_meeting', 'date_meeting', 'link', 'local', 'public', 'status']
     success_url = reverse_lazy('my-meetings')
+
 
 class MeetingDelete(DeleteView):
     model = Meeting
     success_url = reverse_lazy('my-meetings')
 
-class UserCreate(CreateView):
-    model = User
-    fields = ['meeting', 'name', 'matricula', 'email', 'setor', 'cargo']
+
+class FuncionarioCreate(CreateView):
+    model = Funcionario
     success_url = reverse_lazy('meeting')
+    fields = [
+        'nome',
+        'matricula',
+        'email',
+        'setor',
+        'cargo'
+    ]
 
-
+    def form_valid(self, form):
+        form.instance.meetingconfirm = self.request.meeting('pk')
+        url = super().form_valid(form)
+        return url

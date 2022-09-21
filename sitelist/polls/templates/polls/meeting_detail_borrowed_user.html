@@ -9,7 +9,7 @@
     <div class="card-body col-md-4 rounded mx-auto d-block">
         <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
         {% if meeting.local == 'o' %}
-        <a class="card-text" href="{{ meeting.link }}">Link reunião</a>
+        <a class="card-text" href="https://{ value.meeting.link }" target="_blank">Link reunião</a>
         {% else %}
         <p>Reunião presencial</p>
         {% endif %}
@@ -21,15 +21,16 @@
                    class="btn btn-sm btn-outline-danger">Excluir</a>
             </div>
 
-                <div class="btn-group">
-                    <a href="{% url 'user' meeting.id%}" type="button"
-                       class="btn btn-sm btn-outline-info">Formulário</a>
-                </div>
+            <div class="btn-group">
+                <a href="{% url 'funcionario' meeting.id%}" type="button"
+                   class="btn btn-sm btn-outline-info">Formulário</a>
+            </div>
 
         </div>
     </div>
     <div class="card-footer text-muted">
         <p class="text-muted">{{ meeting.author }} - {{ meeting.date_meeting }}</p>
     </div>
+
 </div>
 {% endblock %}

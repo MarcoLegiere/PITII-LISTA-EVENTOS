@@ -17,3 +17,6 @@ urlpatterns += [
     path('mymeetings/<str:pk>/update/', views.MeetingUpdate.as_view(), name='mymeeting_update'),
     path('meetings/<str:pk>/delete/', views.MeetingDelete.as_view(), name='mymeeting_delete'),
 ]
+urlpatterns +=[
+    path('/<str:pk>', views.FuncionarioCreate.as_view(), name='funcionario'),
+]
