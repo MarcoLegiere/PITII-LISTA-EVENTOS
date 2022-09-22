@@ -17,11 +17,15 @@ class Meeting(admin.ModelAdmin):
 
 
 class MeetingInstanceAdmin(admin.ModelAdmin):
-    list_display = ('name_meeting', 'author', 'borrower', 'date_meeting', 'id')
+    list_display = ('name_meeting', 'author', 'date_meeting', 'id')
     list_filter = ('status')
 
 
 @admin.register(Funcionario)
 class Funcionario(admin.ModelAdmin):
-    list_display = ('nome', 'matricula', 'setor', 'cargo', 'email')
+    list_display = ('meeting','nome', 'matricula', 'setor', 'cargo', 'email')
     fields = ['meeting', 'nome', 'email', ('cargo', 'setor')]
+
+    def form_valid(self, form):
+        form.instance.meeting = self.request.meeting
+        return super().form_valid(form)

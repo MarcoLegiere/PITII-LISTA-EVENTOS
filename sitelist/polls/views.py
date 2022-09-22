@@ -2,6 +2,7 @@ from importlib.resources import Resource
 
 from django.shortcuts import render
 from . import admin
+from .forms import ConfirmFunc
 from .models import Owner, Meeting, Funcionario
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -65,8 +66,7 @@ class MeetingCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        url = super().form_valid(form)
-        return url
+        return super().form_valid(form)
 
 
 class MeetingUpdate(UpdateView):
@@ -80,18 +80,12 @@ class MeetingDelete(DeleteView):
     success_url = reverse_lazy('my-meetings')
 
 
-class FuncionarioCreate(CreateView):
+class FuncionarioConfirm(DeleteView):
     model = Funcionario
-    success_url = reverse_lazy('meeting')
-    fields = [
-        'nome',
-        'matricula',
-        'email',
-        'setor',
-        'cargo'
-    ]
+    fields = ['meeting','nome', 'matricula', 'setor', 'cargo', 'email']
+    success_url = reverse_lazy('my-meetings')
 
     def form_valid(self, form):
-        form.instance.meetingconfirm = self.request.meeting('pk')
-        url = super().form_valid(form)
-        return url
+        form = ConfirmFunc(initial={'meeting': Funcionario.meeting.pk})
+        form.instance.meeting = self.request.meeting
+        return super().form_valid(form)

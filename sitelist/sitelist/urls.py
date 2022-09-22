@@ -19,13 +19,13 @@ urlpatterns += [
 
 urlpatterns += [
     path('mymeetings/', views.LoanedMeetingsByUserListView.as_view(), name='my-meetings'),
-    path('mymeetings/<str:pk>', views.LoanedMeetingsByUserDetailView.as_view(), name='my-meetingsDetail'),
+    path('mymeetings/<uuid:pk>', views.LoanedMeetingsByUserDetailView.as_view(), name='my-meetingsDetail'),
     path('meeting/', views.MeetingListView.as_view(), name='meeting'),
-    path('meeting/<str:pk>', views.MeetingDetailView.as_view(), name='meetingDetail'),
+    path('meeting/<uuid:pk>', views.MeetingDetailView.as_view(), name='meetingDetail'),
 ]
 
 urlpatterns += [
     path('mymeetings/create/', views.MeetingCreate.as_view(), name='mymeetings_create'),
-    path('mymeetings/<str:pk>/update/', views.MeetingUpdate.as_view(), name='mymeetings_update'),
-    path('mymeetings/<str:pk>/delete/', views.MeetingDelete.as_view(), name='mymeetings_delete'),
+    path('mymeetings/<uuid:pk>/update/', views.MeetingUpdate.as_view(), name='mymeetings_update'),
+    path('mymeetings/<uuid:pk>/delete/', views.MeetingDelete.as_view(), name='mymeetings_delete'),
 ]

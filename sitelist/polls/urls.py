@@ -8,15 +8,16 @@ urlpatterns = [
 urlpatterns = [
     path('', views.index, name='index'),
     path('meeting/', views.MeetingListView.as_view(), name='meeting'),
-    path('meeting/<str:pk>', views.MeetingDetailView.as_view(), name='meetingDetail'),
-    path('mymeetings/<str:pk>', views.MeetingDetailView.as_view(), name='my-meetingsDetail'),
+    path('meeting/<uuid:pk>', views.MeetingDetailView.as_view(), name='meetingDetail'),
+    path('mymeetings/<uuid:pk>', views.MeetingDetailView.as_view(), name='my-meetingsDetail'),
 ]
 
 urlpatterns += [
     path('mymeetings/create/', views.MeetingCreate.as_view(), name='mymeeting_create'),
-    path('mymeetings/<str:pk>/update/', views.MeetingUpdate.as_view(), name='mymeeting_update'),
-    path('meetings/<str:pk>/delete/', views.MeetingDelete.as_view(), name='mymeeting_delete'),
+    path('mymeetings/<uuid:pk>/update/', views.MeetingUpdate.as_view(), name='mymeeting_update'),
+    path('meetings/<uuid:pk>/delete/', views.MeetingDelete.as_view(), name='mymeeting_delete'),
 ]
-urlpatterns +=[
-    path('/<str:pk>', views.FuncionarioCreate.as_view(), name='funcionario'),
+
+urlpatterns += [
+    path('<uuid:pk>/confirm', views.FuncionarioConfirm.as_view(), name='funcionario'),
 ]
