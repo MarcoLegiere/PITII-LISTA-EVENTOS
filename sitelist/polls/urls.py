@@ -19,5 +19,5 @@ urlpatterns += [
 ]
 
 urlpatterns += [
-    path('<uuid:pk>/confirm', views.FuncionarioConfirm.as_view(), name='funcionario'),
+    path('meeting/<uuid:pk>/confirm', views.FuncionarioConfirm.as_view(), name='funcionario'),
 ]

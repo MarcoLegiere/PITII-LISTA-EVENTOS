@@ -23,7 +23,7 @@ class MeetingInstanceAdmin(admin.ModelAdmin):
 
 @admin.register(Funcionario)
 class Funcionario(admin.ModelAdmin):
-    list_display = ('meeting','nome', 'matricula', 'setor', 'cargo', 'email')
+    list_display = ('meeting','nome', 'matricula', 'setor', 'cargo', 'email', 'meeting_id')
     fields = ['meeting', 'nome', 'email', ('cargo', 'setor')]
 
     def form_valid(self, form):

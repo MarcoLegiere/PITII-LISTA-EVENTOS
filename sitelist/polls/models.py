@@ -2,15 +2,7 @@ import uuid
 from django.contrib.auth.models import User
 
 from django.db import models
-from django.utils.translation import gettext_lazy as _
-from taggit.models import GenericUUIDTaggedItemBase, TaggedItemBase
-from taggit.managers import TaggableManager
 
-class UUIDTaggedItem(GenericUUIDTaggedItemBase, TaggedItemBase):
-
-    class Meta:
-        verbose_name = _("Tag")
-        verbose_name_plural = _("Tags")
 
 class Meeting(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -18,9 +10,6 @@ class Meeting(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT)
     date_meeting = models.DateField(verbose_name='Data da reunião')
     link = models.CharField(max_length=400, blank=True, verbose_name='Link da reunião')
-
-    tags = TaggableManager(blank=True, through=UUIDTaggedItem)
-
 
     MEETING_PUBLIC = (
         ('p', 'Publicado'),
@@ -95,7 +84,7 @@ class Funcionario(models.Model):
     setor = models.CharField(max_length=50)
     cargo = models.CharField(max_length=50)
 
-    meeting = models.ForeignKey('Meeting', on_delete = models.CASCADE)
+    meeting = models.ForeignKey('Meeting', on_delete=models.PROTECT, related_name='funcionarios')
 
     def __int__(self, nome, matricula, email, setor, cargo):
         self.nome = nome
@@ -105,5 +94,4 @@ class Funcionario(models.Model):
         self.cargo = cargo
 
     def __str__(self):
-        return self.nome
-
+        return self.meeting

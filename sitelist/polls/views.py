@@ -80,12 +80,12 @@ class MeetingDelete(DeleteView):
     success_url = reverse_lazy('my-meetings')
 
 
-class FuncionarioConfirm(DeleteView):
+class FuncionarioConfirm(CreateView):
+    template_name = 'polls/funcionario_form.html'
     model = Funcionario
-    fields = ['meeting','nome', 'matricula', 'setor', 'cargo', 'email']
-    success_url = reverse_lazy('my-meetings')
+    class_form = ConfirmFunc
+    fields = ['nome', 'matricula', 'setor', 'cargo', 'email']
+    success_url = reverse_lazy('index')
 
-    def form_valid(self, form):
-        form = ConfirmFunc(initial={'meeting': Funcionario.meeting.pk})
-        form.instance.meeting = self.request.meeting
-        return super().form_valid(form)
+    def get_func(self):
+        return list(Funcionario.objects.filter(meeting_id=self.id))
