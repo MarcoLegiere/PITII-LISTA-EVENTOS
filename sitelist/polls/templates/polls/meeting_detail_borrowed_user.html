@@ -9,10 +9,15 @@
     <div class="card-body col-md-4 rounded mx-auto d-block">
         <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
         {% if meeting.local == 'o' %}
-        <a class="card-text" href="https://{ value.meeting.link }" target="_blank">Link reunião</a>
+        <hr>
+        <a class="card-text" href="{{ meeting.link }}">Link reunião</a>
         {% else %}
-        <p>Reunião presencial</p>
+        <p><strong>Local:</strong> Reunião presencial</strong></p>
         {% endif %}
+        <p><strong>Data:</strong> {{ meeting.date_meeting }}</p>
+
+        <p><strong>Descrição:</strong> {{ meeting.descricao }}</p>
+
         <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
                 <a href="{% url 'mymeeting_update' meeting.id%}" type="button"
@@ -20,12 +25,6 @@
                 <a href="{% url 'mymeeting_delete' meeting.id%}" type="button"
                    class="btn btn-sm btn-outline-danger">Excluir</a>
             </div>
-
-            <div class="btn-group">
-                <a href="{% url 'funcionario' meeting.id%}" type="button"
-                   class="btn btn-sm btn-outline-info">Formulário</a>
-            </div>
-
         </div>
     </div>
     <div class="card-footer text-muted">

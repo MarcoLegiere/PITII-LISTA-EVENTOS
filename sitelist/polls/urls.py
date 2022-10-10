@@ -5,6 +5,7 @@ from polls import views
 urlpatterns = [
     path('', views.index, name='index'),
 ]
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('meeting/', views.MeetingListView.as_view(), name='meeting'),
@@ -16,8 +17,4 @@ urlpatterns += [
     path('mymeetings/create/', views.MeetingCreate.as_view(), name='mymeeting_create'),
     path('mymeetings/<uuid:pk>/update/', views.MeetingUpdate.as_view(), name='mymeeting_update'),
     path('meetings/<uuid:pk>/delete/', views.MeetingDelete.as_view(), name='mymeeting_delete'),
-]
-
-urlpatterns += [
-    path('meeting/<uuid:pk>/confirm', views.FuncionarioConfirm.as_view(), name='funcionario'),
 ]

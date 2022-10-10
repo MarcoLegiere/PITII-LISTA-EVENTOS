@@ -1,12 +1,11 @@
-from importlib.resources import Resource
-
 from django.shortcuts import render
-from . import admin
-from .forms import ConfirmFunc
-from .models import Owner, Meeting, Funcionario
+from pyexpat.errors import messages
+
+from . import forms
+
+from .models import Owner, Meeting
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -14,22 +13,8 @@ from polls.models import Meeting
 
 
 def index(request):
-    """View function for home page of site."""
 
-    # Generate counts of some of the main objects
-    num_meetings = Meeting.objects.all().count()
-
-    # Available books
-    num_users = Funcionario.objects.count()
-
-    context = {
-        'num_meetings': num_meetings,
-        'num_users': num_users,
-    }
-
-    # Render the HTML template index.html with the data in the context variable
-    return render(request, 'index.html', context=context)
-
+    return render(request, 'index.html')
 
 class MeetingListView(generic.ListView):
     model = Meeting
@@ -60,7 +45,7 @@ class LoanedMeetingsByUserDetailView(LoginRequiredMixin, generic.DetailView):
 
 class MeetingCreate(CreateView):
     model = Meeting
-    fields = ['name_meeting', 'date_meeting', 'link', 'local', 'public', 'status']
+    fields = ['name_meeting', 'date_meeting', 'link', 'local', 'public', 'status', 'descricao']
     initial = {'status': 'f'}
     success_url = reverse_lazy('my-meetings')
 
@@ -71,21 +56,14 @@ class MeetingCreate(CreateView):
 
 class MeetingUpdate(UpdateView):
     model = Meeting
-    fields = ['name_meeting', 'date_meeting', 'link', 'local', 'public', 'status']
+    fields = ['name_meeting', 'date_meeting', 'link', 'local', 'public', 'status', 'descricao']
     success_url = reverse_lazy('my-meetings')
-
 
 class MeetingDelete(DeleteView):
     model = Meeting
     success_url = reverse_lazy('my-meetings')
 
 
-class FuncionarioConfirm(CreateView):
-    template_name = 'polls/funcionario_form.html'
-    model = Funcionario
-    class_form = ConfirmFunc
-    fields = ['nome', 'matricula', 'setor', 'cargo', 'email']
-    success_url = reverse_lazy('index')
 
-    def get_func(self):
-        return list(Funcionario.objects.filter(meeting_id=self.id))
+
+
