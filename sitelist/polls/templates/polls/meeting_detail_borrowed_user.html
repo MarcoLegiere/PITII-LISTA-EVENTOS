@@ -9,7 +9,7 @@
     <div class="card-body col-md-4 rounded mx-auto d-block">
         <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
         {% if meeting.local == 'o' %}
-        <a class="card-text" href="https://{ value.meeting.link }" target="_blank">Link reunião</a>
+        <a class="card-text">{{ meeting.link }}</a>
         {% else %}
         <p>Reunião presencial</p>
         {% endif %}

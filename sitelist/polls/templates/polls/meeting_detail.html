@@ -9,7 +9,7 @@
         <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
         {% if meeting.local == 'o' %}
         <hr>
-        <a class="card-text" href="{{ meeting.link }}">Link reunião</a>
+        <a class="card-text">{{ meeting.link }}</a>
         {% else %}
         <p><strong>Local:</strong> Reunião presencial</strong></p>
         {% endif %}
