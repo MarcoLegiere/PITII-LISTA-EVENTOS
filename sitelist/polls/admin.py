@@ -1,7 +1,7 @@
 from importlib.resources import Resource
 
 from django.contrib import admin
-from polls.models import Owner, Meeting, Funcionario
+from polls.models import Owner, Meeting
 
 
 class OwnerAdmin(admin.ModelAdmin):
@@ -21,11 +21,3 @@ class MeetingInstanceAdmin(admin.ModelAdmin):
     list_filter = ('status')
 
 
-@admin.register(Funcionario)
-class Funcionario(admin.ModelAdmin):
-    list_display = ('meeting','nome', 'matricula', 'setor', 'cargo', 'email')
-    fields = ['meeting', 'nome', 'email', ('cargo', 'setor')]
-
-    def form_valid(self, form):
-        form.instance.meeting = self.request.meeting
-        return super().form_valid(form)
