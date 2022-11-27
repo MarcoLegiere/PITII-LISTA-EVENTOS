@@ -13,14 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-sh#%-loc@qtm4g67xt@#@@1n3^v1&y(hvk&5miy-7(86mbic6#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if IS_HEROKU:
-    ALLOWED_HOSTS = ["*"]
-else:
-    ALLOWED_HOSTS = []
-
-# SECURITY WARNING: don't run with debug turned on in production!
-if not IS_HEROKU:
-    DEBUG = True
+DEBUG = True
 
 ALLOWED_HOSTS = ['https://sitelist-pitii.herokuapp.com/']
 
@@ -127,8 +120,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
-
-if "CI" in os.environ:
-    TEST_RUNNER = "gettingstarted.settings.HerokuDiscoverRunner"
 
 django_heroku.settings(locals())
