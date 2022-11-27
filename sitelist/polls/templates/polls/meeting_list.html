@@ -11,6 +11,7 @@
 
                 {% for k,v in meeting.MEETING_PUBLIC %}
                 {% if meeting.status == 'p' and k == 'p' %}
+                {% if meeting.public == 'p' %}
                 <div class="col-md-4">
                     <div class="card mb-4 shadow-sm">
                         <img src="../static/img/Thumbnail.jpg" class="card-img-top" alt="Thumbnail">
@@ -31,6 +32,7 @@
                         </div>
                     </div>
                 </div>
+                {% endif %}
                 {% endif %}
                 {% endfor %}
                 {% endfor %}

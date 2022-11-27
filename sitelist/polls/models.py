@@ -76,22 +76,3 @@ class Owner(models.Model):
 
     def __str__(self):
         return self.name
-
-class Funcionario(models.Model):
-    nome = models.CharField(max_length=80)
-    matricula = models.CharField(max_length=10)
-    email = models.EmailField(max_length=120)
-    setor = models.CharField(max_length=50)
-    cargo = models.CharField(max_length=50)
-
-    meeting = models.ForeignKey('Meeting', on_delete = models.CASCADE)
-
-    def __int__(self, nome, matricula, email, setor, cargo):
-        self.nome = nome
-        self.matricula = matricula
-        self.email = email
-        self.setor = setor
-        self.cargo = cargo
-
-    def __str__(self):
-        return self.nome

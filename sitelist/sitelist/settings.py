@@ -1,5 +1,5 @@
-
 from pathlib import Path
+import django_heroku
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -15,12 +15,13 @@ SECRET_KEY = 'django-insecure-sh#%-loc@qtm4g67xt@#@@1n3^v1&y(hvk&5miy-7(86mbic6#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://sitelist-pitii.herokuapp.com/']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'taggit',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -30,6 +31,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,7 +65,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sitelist.wsgi.application'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'polls/static')]
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -117,3 +120,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = '/'
+
+django_heroku.settings(locals())
