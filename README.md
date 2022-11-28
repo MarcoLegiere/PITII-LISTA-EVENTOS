@@ -1,5 +1,7 @@
 # Projeto Integrador Transdisciplinar em Ciência da Computação II
 
+Link da aplicação para teste: https://pitii-lista-eventos-chtj.vercel.app/
+
 Bem-vindo ao projeto de ciências da computação da faculdade Cruzeiro do Sul.
 
 Projeto foi pensado para organizar as reuniões da unidade aonde eu trabalaho, facilitando a organização e facilizando o acesso dos colaboradores.
