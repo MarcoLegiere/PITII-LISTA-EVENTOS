@@ -8,7 +8,7 @@
     },
     {
       "src": "build_files.sh",
-      "use": "@ardnt/vercel-python-wsgi",
+      "use": "@natanffs/vercel-python-wsgi",
       "config": {
         "distDir": "staticfiles_build"
       }
